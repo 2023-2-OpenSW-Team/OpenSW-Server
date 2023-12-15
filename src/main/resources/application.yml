@@ -7,12 +7,12 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     #해당 부분을 도커에 맞게 설정.
-#    url: jdbc:mysql://localhost:3306/opensw?useSSL=false&serverTimezone=UTC
-    url: jdbc:mysql://localhost:3036/opensw?useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/opensw?useSSL=false&serverTimezone=UTC
+#    url: jdbc:mysql://localhost:3036/opensw?useSSL=false&serverTimezone=UTC
     username: root
     #해당 부분을 도커에 맞게 설정(기본 명령어 기준)
-#    password : secret
-    password: mysqlpw
+    password : secret
+#    password: mysqlpw
 
   # JPA
   jpa:
