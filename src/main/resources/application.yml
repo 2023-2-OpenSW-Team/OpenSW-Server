@@ -1,0 +1,29 @@
+#https
+server:
+  port: 8080
+
+# MySQL
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3036/opensw?useSSL=false&serverTimezone=UTC
+    username: root
+    password: mysqlpw
+
+  # JPA
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.MySQLDialect
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        show-sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true # Clob을 String으로 자동 변환하는 설정
+    hibernate.naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+logging:
+  level:
+    org.hibernate.SQL: TRACE
+    org.hibernate.type.descriptor.sql: trace
