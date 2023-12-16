@@ -1,22 +1,42 @@
 version: '3'
 services:
-    #사용 데이터베이스
-    mysql:
-        image: mysql
-        restart: always
-        container_name: mysqltest
-        ports:
-          - "3308:3306"
-        environment:
-            MYSQL_ROOT_PASSWORD: secret
-            MYSQL_DATABASE : redmine
-            TZ: Asia/Seoul
+  mysql:
+    image: mysql
+    container_name: mysql
+    networks:
+      - opensw-network
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: redmine
+    ports:
+      - "3308:3306"
+
+  redmine:
+    image: redmine
+    container_name: redmine
+    networks:
+      - opensw-network
+    ports:
+      - "3000:3000"
+    environment:
+      REDMINE_DB_MYSQL: mysql
+      REDMINE_DB_PORT: 3306
+      REDMINE_DB_DATABASE: redmine
+      REDMINE_DB_USERNAME: root
+      REDMINE_DB_PASSWORD: secret
+    depends_on:
+      - mysql
     
-    redmine:
-        image: redmine
-        restart : always
-        container_name : redminetest
-        ports:
-          - "3000:3000"
-        link:
-          mysql:mysql
+  server:
+    image: kimtaewan0317/server:test
+    container_name: server
+    networks:
+      - opensw-network
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mysql
+
+networks:
+  opensw-network:
+    driver: bridge

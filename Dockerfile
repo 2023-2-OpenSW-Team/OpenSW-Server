@@ -1,7 +1,5 @@
-FROM openjdk:11-jdk-slim
-
-WORKDIR /app
-COPY . /app
-
-EXPOSE 8080
-CMD ["./gradlew", "bootRun"]
+FROM openjdk:17
+ARG JAR_FILE=./build/libs/app.jar
+COPY ${JAR_FILE} ./app.jar
+ENV TZ=Asia/Seoul
+ENTRYPOINT ["java", "-jar", "./app.jar"]
