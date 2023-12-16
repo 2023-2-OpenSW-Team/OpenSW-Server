@@ -20,3 +20,11 @@ services:
       REDMINE_DB_PASSWORD: secret
     depends_on:
       - mysql
+
+  server:
+    image: server
+    container_name: server
+    networks:
+      - opensw-network
+    -ports:
+      - "8082:8082"
