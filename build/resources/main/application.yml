@@ -5,8 +5,10 @@ server:
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
+    #도커-도커에 연동을 위해선 아래와 같이 작성
+    url: jdbc:mysql://mysql:3308/mysql
     #해당 부분을 도커에 맞게 설정.
-    url: jdbc:mysql://127.0.0.1:3308/mysql
+#    url: jdbc:mysql://127.0.0.1:3308/mysql
 #    url: jdbc:mysql://localhost:3036/opensw?useSSL=false&serverTimezone=UTC
     username: root
     #해당 부분을 도커에 맞게 설정(기본 명령어 기준)
