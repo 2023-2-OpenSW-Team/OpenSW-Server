@@ -1,34 +1,22 @@
 version: '3'
 services:
-  server:
-    image: server
-    networks:
-      - BackEnd
-    ports:
-      - "8082:8082"
-
   mysql:
     image: mysql
-    networks:
-      - BackEnd
-    ports:
-      - "3308:3306"
     environment:
       MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE : redmine
+      MYSQL_DATABASE: redmine
+    ports:
+      - "3308:3306"
 
   redmine:
     image: redmine
-    networks:
-      - BackEnd
     ports:
       - "3000:3000"
     environment:
       REDMINE_DB_MYSQL: mysql
-      REDMINE_DB_PORT: 3308
+      REDMINE_DB_PORT: 3306
       REDMINE_DB_DATABASE: redmine
-      REDMINE_DB_USERNAME: redmine_user
-      REDMINE_DB_PASSWORD: redmine_password
-
-networks:
-  BackEnd:
+      REDMINE_DB_USERNAME: root
+      REDMINE_DB_PASSWORD: secret
+    depends_on:
+      - mysql
