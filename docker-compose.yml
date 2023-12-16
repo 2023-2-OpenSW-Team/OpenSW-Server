@@ -2,7 +2,7 @@ version: '3'
 services:
   mysql:
     image: mysql
-    container_name: mysql-container
+    container_name: mysql
     networks:
       - opensw-network
     environment:
@@ -13,13 +13,13 @@ services:
 
   redmine:
     image: redmine
-    container_name: redmine-container
+    container_name: redmine
     networks:
       - opensw-network
     ports:
       - "3000:3000"
     environment:
-      REDMINE_DB_MYSQL: mysql-container
+      REDMINE_DB_MYSQL: mysql
       REDMINE_DB_PORT: 3306
       REDMINE_DB_DATABASE: redmine
       REDMINE_DB_USERNAME: root
@@ -28,8 +28,8 @@ services:
       - mysql
     
   server:
-    image: server
-    container_name: server-container
+    image: kimtaewan0317/server
+    container_name: server
     networks:
       - opensw-network
     ports:
