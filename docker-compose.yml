@@ -28,7 +28,7 @@ services:
       - mysql
     
   server:
-    image: kimtaewan0317/server
+    image: kimtaewan0317/server:test
     container_name: server
     networks:
       - opensw-network
