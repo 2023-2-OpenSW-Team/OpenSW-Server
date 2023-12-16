@@ -1,0 +1,33 @@
+#https
+server:
+  port: 8082
+
+# MySQL
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    #해당 부분을 도커에 맞게 설정.
+    url: jdbc:mysql://127.0.0.1:3308/mysql
+#    url: jdbc:mysql://localhost:3036/opensw?useSSL=false&serverTimezone=UTC
+    username: root
+    #해당 부분을 도커에 맞게 설정(기본 명령어 기준)
+    password : secret
+#    password: mysqlpw
+
+  # JPA
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.MySQLDialect
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        show-sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true # Clob을 String으로 자동 변환하는 설정
+    hibernate.naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+logging:
+  level:
+    org.hibernate.SQL: TRACE
+    org.hibernate.type.descriptor.sql: trace

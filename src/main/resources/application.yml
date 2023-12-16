@@ -1,14 +1,18 @@
 #https
 server:
-  port: 8080
+  port: 8082
 
 # MySQL
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3036/opensw?useSSL=false&serverTimezone=UTC
+    #해당 부분을 도커에 맞게 설정.
+    url: jdbc:mysql://127.0.0.1:3308/mysql
+#    url: jdbc:mysql://localhost:3036/opensw?useSSL=false&serverTimezone=UTC
     username: root
-    password: mysqlpw
+    #해당 부분을 도커에 맞게 설정(기본 명령어 기준)
+    password : secret
+#    password: mysqlpw
 
   # JPA
   jpa:
